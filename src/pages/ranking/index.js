@@ -4,7 +4,6 @@ const ranking = () => {
     return (
         <>
             <Header />
-            <div className="bg-green-400">ranquig</div>
         </>
     );
 }
