@@ -7,11 +7,21 @@ import { useState } from "react";
 
 const Login = () => {
     const [loading, setLoading] = useState(false);
+    const [visibleAlert, setVisibleAlert] = useState(true);
+    const [data, setData] = useState({});
+
+    const handleChange = (e) => {
+        setData({
+            ...data,
+            [e.target.name]: [e.target.value]
+        })
+    }
+
+
     const handleSubmit = (e) => {
         e.preventDefault();
         setLoading(!loading);
     };
-    const [visibleAlert, setVisibleAlert] = useState(true);
     const handleClose = () => {
         setVisibleAlert(false);
     };
@@ -35,8 +45,8 @@ const Login = () => {
                             />}
 
 
-                        <TextInput text='Usuario' name='user' />
-                        <TextPassword text='Contraseña' name='password' />
+                        <TextInput onChange={handleChange} value={data.user || ''} text='Usuario' name='user' />
+                        <TextPassword onChange={handleChange} value={data.password || ''} text='Contraseña' name='password' />
 
                         <Button loading={loading} text='ENTRAR' />
 
