@@ -1,6 +1,6 @@
 const ranking = ()=>{
     return (
-        <div>ranquig</div>
+        <div className="bg-green-400">ranquig</div>
     );
 }
 export default ranking;
