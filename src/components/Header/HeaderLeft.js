@@ -3,31 +3,26 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 const HeaderLeft = ({
-    nameApp = 'nameApp'
+    nameApp = 'nameApp',
+    _Links
 }) => {
     return (
         <div className='flex justify-between'>
             <div className='flex items-end mr-16'>
-                <Image src={`${Logo.src}`} height={65} width={65} />
-                <h3 className='text-2xl font-medium font-serif'>{nameApp}</h3>
+                <img src={`${Logo.src}`} className='w-11 h-11 md:w-16 md:h-16' />
+                <h3 className='text-2xl font-medium font-serif hidden md:block'>{nameApp}</h3>
             </div>
 
-            <HeaderLinks />
+            <HeaderLinks _Links={_Links} />
 
         </div>
     );
 }
 
-const HeaderLinks = () => {
-
-    const _Links = [
-        { name: 'Preguntas', path: 'questions' },
-        { name: 'Areas', path: 'areas' },
-        { name: 'Ranking', path: 'ranking' }
-    ]
+const HeaderLinks = ({ _Links }) => {
 
     return (
-        <ul className='flex items-end font-serif'>
+        <ul className='md:flex items-end font-serif hidden'>
             {
                 _Links.map((e, key) => {
                     return (
