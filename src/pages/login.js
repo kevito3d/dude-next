@@ -2,12 +2,13 @@ import TextInput from "components/Login/InputText";
 import TextPassword from "components/Login/InputPassword";
 import AlertCustom from 'components/Login/AlertCustom';
 import Button from "components/Login/Button";
+import {host} from "../app.config"
 
 import { useState } from "react";
 
 const Login = () => {
     const [loading, setLoading] = useState(false);
-    const [visibleAlert, setVisibleAlert] = useState(true);
+    const [visibleAlert, setVisibleAlert] = useState(false);
     const [data, setData] = useState({});
 
     const handleChange = (e) => {
@@ -18,9 +19,39 @@ const Login = () => {
     }
 
 
-    const handleSubmit = (e) => {
+    const handleSubmit =async (e) => {
+        console.log(data.user);
+        console.log(host);
+        console.log(data.password);
         e.preventDefault();
-        setLoading(!loading);
+        setVisibleAlert(false)
+        setLoading(true);
+        const resultado = await fetch(`${host}/auth/signin`,{
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            mode:'cors',
+            body:JSON.stringify(
+                {
+                user: data.user[0],
+                password: data.password[0]
+                }
+            )
+        });
+        console.log("Asd")
+        const resultado_ = await resultado.json();
+        console.log(resultado_.error)
+        
+        if(resultado_.error!=null ){
+            setVisibleAlert(true);
+            setLoading(false);
+           
+        }else{
+            window.location.replace("/ranking")
+            setLoading(false);
+        }
+        
     };
     const handleClose = () => {
         setVisibleAlert(false);
