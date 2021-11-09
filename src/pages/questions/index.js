@@ -1,11 +1,11 @@
 import Header from "components/Header";
-
-const ranking = () => {
+const Question = () => {
     return (
         <>
             <Header />
-            Ranking
+            Questions
         </>
     );
 }
-export default ranking;
+
+export default Question;

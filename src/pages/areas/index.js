@@ -1,11 +1,11 @@
 import Header from "components/Header";
-
-const ranking = () => {
+const Area = () => {
     return (
         <>
             <Header />
-            Ranking
+            Area
         </>
     );
 }
-export default ranking;
+
+export default Area;
